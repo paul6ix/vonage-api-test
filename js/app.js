@@ -13,15 +13,50 @@ function handleError(error) {
 
 function initializeSession() {
     let session = OT.initSession(apiKey, sessionId);
+    //Subscriber options
+    let subscriberOptions = {
+        insertMode: 'append',
+        width: '100%',
+        height: '100%',
+        name: 'Guest',
+        subscribeToAudio: true,
+        subscribeToVideo: true,
+        style: {buttonDisplayMode: 'on'}
+    }
+
 
     // Subscribe to a newly created stream
     session.on('streamCreated', function (event) {
-        session.subscribe(event.stream, 'subscriber', {
-            insertMode: 'append',
-            width: '100%',
-            height: '100%'
-        }, handleError);
+        let subscriber = session.subscribe(event.stream, 'subscriber', subscriberOptions
+            , handleError);
+        //Adding toggle button  for video
+        document.getElementById("vidBtn").addEventListener("click", function () {
+            if (subscriberOptions.subscribeToVideo === true) {
+                subscriber.subscribeToVideo(false)
+                subscriberOptions.subscribeToVideo = false
+                document.getElementById('videoBtn').innerHTML = "Video On"
+            } else {
+                subscriber.subscribeToVideo(true)
+                subscriberOptions.subscribeToVideo = true
+                document.getElementById('videoBtn').innerHTML = "Video Off"
+            }
+
+        });
+        //Adding toggle button  for audio
+        document.getElementById("audBtn").addEventListener("click", function () {
+            if (subscriberOptions.subscribeToAudio === true) {
+                subscriber.subscribeToAudio(false)
+                subscriberOptions.subscribeToAudio = false
+                document.getElementById('audBtn').innerHTML = "Audio On"
+            } else {
+                subscriber.subscribeToAudio(true)
+                subscriberOptions.subscribeToAudio = true
+                document.getElementById('audBtn').innerHTML = "Audio Off"
+            }
+
+        });
     });
+
     //Publisher options
     let publisherOptions = {
         insertMode: 'append',
@@ -30,7 +65,7 @@ function initializeSession() {
         name: 'Paul Okpor',
         publishVideo: true,
         publishAudio: true,
-        style: {buttonDisplayMode: 'off'}
+        style: {buttonDisplayMode: 'on'}
 
     }
     //Adding toggle button  for video
