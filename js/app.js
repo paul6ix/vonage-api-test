@@ -1,9 +1,8 @@
 //Setting API credentials
 
-const apiKey = "47533381";
-const sessionId = "1_MX40NzUzMzM4MX5-MTY1NzAzMDA4ODEzNn5WTEpBMkVrN1dvdFdJQktqTTk2RkJkN3F-fg";
-const token = "T1==cGFydG5lcl9pZD00NzUzMzM4MSZzaWc9ZTc4ODBjZTQzYmIwZTliMTQxNjY0NGMwZDhlYTYzYTUzZGI2YjVkYzpzZXNzaW9uX2lkPTFfTVg0ME56VXpNek00TVg1LU1UWTFOekF6TURBNE9ERXpObjVXVEVwQk1rVnJOMWR2ZEZkSlFrdHFUVGsyUmtKa04zRi1mZyZjcmVhdGVfdGltZT0xNjU3MDMwMTQyJm5vbmNlPTAuOTQ0NDIwMjI1NDE0NjM0MyZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNjU5NjIyMTQxJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9";
-
+const apiKey = "";
+const sessionId = "";
+const token = "";
 // Handling all of our errors here by alerting them
 function handleError(error) {
     if (error) {
