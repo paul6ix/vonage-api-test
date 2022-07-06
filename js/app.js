@@ -22,16 +22,52 @@ function initializeSession() {
             height: '100%'
         }, handleError);
     });
-
-
-    // Create a publisher
-    let publisher = OT.initPublisher('publisher', {
+    //Publisher options
+    let publisherOptions = {
         insertMode: 'append',
         width: '100%',
         height: '100%',
         name: 'Paul Okpor',
-        style : {buttonDisplayMode: 'on'}
-    }, handleError);
+        publishVideo: true,
+        publishAudio: true,
+        style: {buttonDisplayMode: 'off'}
+
+    }
+    //Adding toggle button  for video
+    document.getElementById("videoBtn").addEventListener("click", function () {
+        if (publisherOptions.publishVideo === true) {
+            publisher.publishVideo(false)
+            publisherOptions.publishVideo = false
+            document.getElementById('videoBtn').innerHTML = "Video On"
+            console.log("Video off")
+        } else {
+            publisher.publishVideo(true)
+            publisherOptions.publishVideo = true
+            console.log("video on")
+            document.getElementById('videoBtn').innerHTML = "Video Off"
+        }
+
+    });
+    //Adding toggle button  for audio
+    document.getElementById("audioBtn").addEventListener("click", function () {
+        if (publisherOptions.publishAudio === true) {
+            publisher.publishAudio(false)
+            publisherOptions.publishAudio = false
+            document.getElementById('audioBtn').innerHTML = "Audio On"
+            console.log("audio off")
+        } else {
+            publisher.publishAudio(true)
+            publisherOptions.publishAudio = true
+            console.log("video on")
+            document.getElementById('audioBtn').innerHTML = "Audio Off"
+        }
+
+    });
+
+    // Create a publisher
+    let publisher = OT.initPublisher('publisher', publisherOptions
+        , handleError);
+
 
     // Connect to the session
     session.connect(token, function (error) {
