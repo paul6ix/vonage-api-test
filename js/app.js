@@ -1,6 +1,6 @@
 //Setting API credentials
 
-const apiKey = "";
+let apiKey = "";
 const sessionId = "";
 const token = "";
 // Handling all of our errors here by alerting them
